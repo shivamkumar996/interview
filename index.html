@@ -216,18 +216,15 @@
             }
 
             .jump-nav-links {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                display: flex;
+                flex-wrap: wrap;
                 gap: 6px;
-                max-height: 180px;
-                overflow: auto;
-                padding-right: 3px;
             }
 
             .jump-link {
                 font-size: 12px;
                 padding: 7px 8px;
-                white-space: normal;
+                white-space: nowrap;
                 line-height: 1.25;
                 border-radius: 10px;
             }
@@ -249,8 +246,7 @@
             }
 
             .jump-nav-links {
-                grid-template-columns: 1fr;
-                max-height: 200px;
+                gap: 6px;
             }
         }
 
