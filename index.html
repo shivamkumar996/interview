@@ -170,21 +170,40 @@
         .jump-link {
             display: inline-block;
             text-decoration: none;
-            background: #1d4ed8;
-            color: #ffffff;
-            border: 1px solid #1e40af;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
             border-radius: 999px;
             padding: 6px 10px;
             font-size: 12px;
             font-weight: 600;
             white-space: nowrap;
             line-height: 1.2;
-            box-shadow: 0 2px 6px rgba(29, 78, 216, 0.35);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
         }
 
         .jump-link:hover {
-            background: #1e40af;
-            border-color: #1e3a8a;
+            background: #4b5563;
+            border-color: #374151;
+        }
+
+        .quick-tabs-fab {
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            z-index: 100;
+            border: 1px solid #111111;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #111111;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.2);
+            cursor: pointer;
         }
 
         @media (max-width: 768px) {
@@ -227,6 +246,14 @@
                 white-space: nowrap;
                 line-height: 1.25;
                 border-radius: 10px;
+            }
+
+            .quick-tabs-fab {
+                right: 10px;
+                bottom: 10px;
+                width: 32px;
+                height: 32px;
+                font-size: 17px;
             }
 
             table {
@@ -1921,6 +1948,7 @@
 
             const jumpNav = document.createElement("div");
             jumpNav.className = "jump-nav";
+            jumpNav.id = "quick-jump-tabs";
 
             const jumpTitle = document.createElement("p");
             jumpTitle.className = "jump-nav-title";
@@ -1959,6 +1987,17 @@
             jumpNav.appendChild(jumpTitle);
             jumpNav.appendChild(linksWrap);
             pageHeading.insertAdjacentElement("afterend", jumpNav);
+
+            const fab = document.createElement("button");
+            fab.type = "button";
+            fab.className = "quick-tabs-fab";
+            fab.textContent = "↑";
+            fab.title = "Jump to tabs";
+            fab.setAttribute("aria-label", "Jump to tabs");
+            fab.addEventListener("click", function () {
+                jumpNav.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+            document.body.appendChild(fab);
         });
     </script>
 </body>
