@@ -1,316 +1,1970 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OOP Notes</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
 
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
-      line-height: 1.7;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+    <title>Core Java Basics + OOPS & Spring Boot Advanced Notes</title>
 
-    .note-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 28px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-      border-left: 6px solid #2563eb;
-      margin-top: 24px;
-    }
+    <style>
 
-    .note-card:first-child {
-      margin-top: 0;
-    }
+        :root {
+            --bg: #f3f6fb;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-soft: #dbeafe;
+            --shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+        }
 
-    h1 {
-      margin: 0 0 16px;
-      font-size: 30px;
-      color: #0f172a;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .subtitle {
-      font-size: 15px;
-      color: #6b7280;
-      margin-bottom: 18px;
-    }
+        body {
+            font-family: "Inter", "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+            line-height: 1.75;
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            padding: 28px 18px 70px;
+            max-width: 1100px;
+            margin-inline: auto;
+        }
 
-    p {
-      margin: 12px 0;
-      font-size: 17px;
-    }
+        h1, h2, h3, h4 {
+            color: #0f172a;
+            line-height: 1.3;
+        }
 
-    .highlight {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      padding: 14px;
-      border-radius: 10px;
-      margin-top: 16px;
-      font-size: 16px;
-    }
+        h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            margin: 6px 0 22px;
+            letter-spacing: 0.2px;
+        }
 
-    .key-point {
-      margin-top: 18px;
-      padding: 12px 14px;
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
-      border-radius: 10px;
-      font-weight: 500;
-    }
+        h2 {
+            font-size: clamp(20px, 2.2vw, 28px);
+            margin: 0 0 16px;
+        }
 
-    .code-block {
-      margin-top: 16px;
-      background: #111827;
-      color: #e5e7eb;
-      border-radius: 10px;
-      padding: 16px;
-      overflow-x: auto;
-      font-size: 15px;
-    }
+        h3 {
+            font-size: 21px;
+            margin: 26px 0 12px;
+        }
 
-    .code-block code {
-      font-family: Consolas, Monaco, "Courier New", monospace;
-      white-space: pre;
-      display: block;
-      line-height: 1.6;
-    }
+        h4 {
+            font-size: 17px;
+            margin: 18px 0 8px;
+            color: #334155;
+        }
 
-    h2 {
-      margin: 22px 0 8px;
-      font-size: 22px;
-      color: #0f172a;
-    }
+        p, li {
+            font-size: 16px;
+            color: #1e293b;
+        }
 
-    .quick-nav {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-      margin-bottom: 20px;
-    }
+        .section {
+            margin-bottom: 18px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
 
-    .quick-nav-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #0f172a;
-    }
+        .definition {
+            background: linear-gradient(180deg, #f8fbff 0%, #f3f8ff 100%);
+            border: 1px solid #d8e7ff;
+            border-left: 5px solid var(--primary);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
 
-    .quick-nav-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+        .example {
+            color: #475569;
+            margin-top: 6px;
+        }
 
-    .jump-btn {
-      display: inline-block;
-      text-decoration: none;
-      background: #2563eb;
-      color: #ffffff;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-  </style>
+        ul, ol {
+            padding-left: 24px;
+        }
+
+        li {
+            margin: 6px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 20px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        th, td {
+            border: 1px solid #dbe2ea;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #eff6ff;
+            color: #1e3a8a;
+        }
+
+        .tip {
+            background-color: #fff7dd;
+            color: #7c5a00;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #fde68a;
+            margin-top: 12px;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        code {
+            background: #eef2ff;
+            color: #312e81;
+            padding: 1px 6px;
+            border-radius: 6px;
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.92em;
+        }
+
+        .jump-nav {
+            position: static;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            padding: 14px;
+            margin: 0 0 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .jump-nav-title {
+            margin: 0 0 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .jump-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .jump-link {
+            display: inline-block;
+            text-decoration: none;
+            background: #1d4ed8;
+            color: #ffffff;
+            border: 1px solid #1e40af;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            line-height: 1.2;
+            box-shadow: 0 2px 6px rgba(29, 78, 216, 0.35);
+        }
+
+        .jump-link:hover {
+            background: #1e40af;
+            border-color: #1e3a8a;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 14px 10px 42px;
+                max-width: 100%;
+            }
+
+            h1 {
+                margin: 2px 0 14px;
+            }
+
+            .section {
+                padding: 14px;
+                border-radius: 12px;
+            }
+
+            p, li {
+                font-size: 15px;
+            }
+
+            .definition {
+                padding: 11px 12px;
+            }
+
+            .jump-nav {
+                padding: 10px;
+                border-radius: 12px;
+            }
+
+            .jump-nav-links {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+                max-height: 180px;
+                overflow: auto;
+                padding-right: 3px;
+            }
+
+            .jump-link {
+                font-size: 12px;
+                padding: 7px 8px;
+                white-space: normal;
+                line-height: 1.25;
+                border-radius: 10px;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 19px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            .jump-nav-links {
+                grid-template-columns: 1fr;
+                max-height: 200px;
+            }
+        }
+
+    </style>
+
 </head>
+
 <body>
-  <div class="container">
-    <div class="quick-nav">
-      <div class="quick-nav-title">Quick Jump</div>
-      <div class="quick-nav-buttons">
-        <a class="jump-btn" href="#q1">Q1 Composition</a>
-        <a class="jump-btn" href="#q2">Q2 Association</a>
-        <a class="jump-btn" href="#q3">Q3 Encapsulation</a>
-        <a class="jump-btn" href="#q4">Q4 Abstraction</a>
-        <a class="jump-btn" href="#q5">Q5 Polymorphism</a>
-      </div>
+
+    <h1>Core Java Basics + OOPS</h1>
+
+    <div class="section">
+
+        <h2>1. COMPOSITION</h2>
+
+        <p class="definition">Composition is a design technique where one class contains a reference to another class as a field. This represents a <span class="highlight">has-a relationship</span>.</p>
+
+        <p class="example"><strong>For example</strong>, a Car has an Engine, so the Car class will have an Engine object inside it.</p>
+
+        <p>It’s a strong form of association where the lifecycle of the contained object is dependent on the container object.</p>
+
+        <p>Composition is preferred over inheritance in many cases because it provides better flexibility and loose coupling.</p>
+
     </div>
 
-    <div class="note-card" id="q1" style="border-left-color: #2563eb; margin-top: 0;">
-      <h1>1. COMPOSITION</h1>
-      <div class="subtitle">Object-Oriented Programming (OOP) Concept</div>
+    <div class="section">
 
-      <p>
-        Composition is a design technique where one class contains a reference to another class as a field.
-        This represents a <strong>has-a relationship</strong>.
-      </p>
+        <h2>2. ASSOCIATION</h2>
 
-      <div class="highlight">
-        <strong>Example:</strong> A <strong>Car</strong> has an <strong>Engine</strong>, so the Car class will have an Engine object inside it.
-      </div>
+        <p class="definition">Association is a general relationship between two classes that are connected logically but have independent lifecycles.</p>
 
-      <p>
-        It is a strong form of association where the lifecycle of the contained object is dependent on the container object.
-      </p>
+        <p>It represents a ‘uses-a’ or ‘has-a’ relationship.</p>
 
-      <div class="key-point">
-        Composition is preferred over inheritance in many cases because it provides better flexibility and loose coupling.
-      </div>
-    </div>
+        <p>There are four types of association — one-to-one, one-to-many, many-to-one, and many-to-many.</p>
 
-    <div class="note-card" id="q2" style="border-left-color: #7c3aed;">
-      <h1>2. ASSOCIATION</h1>
-      <div class="subtitle">Object-Oriented Programming (OOP) Concept</div>
+        <p class="example"><strong>For example</strong>, a Teacher and a Student are associated with each other — a Teacher can teach many students and vice versa.</p>
 
-      <p>
-        Association is a general relationship between two classes that are connected logically but have independent lifecycles.
-      </p>
+        <p>Association is the umbrella concept under which aggregation and composition fall.</p>
 
-      <p>
-        It represents a <strong>uses-a</strong> or <strong>has-a</strong> relationship.
-      </p>
+        <ul>
 
-      <p>
-        There are four types of association: <strong>one-to-one</strong>, <strong>one-to-many</strong>, <strong>many-to-one</strong>, and <strong>many-to-many</strong>.
-      </p>
+            <li>🔹 One-to-One: One person has one passport</li>
 
-      <div class="highlight">
-        <strong>Example:</strong> A <strong>Teacher</strong> and a <strong>Student</strong> are associated with each other — a Teacher can teach many students and vice versa.
-      </div>
+            <li>🔸 One-to-Many: One teacher teaches many students</li>
 
-      <p>
-        Association is the umbrella concept under which aggregation and composition fall.
-      </p>
+            <li>🔸 Many-to-One: Many students have one teacher</li>
 
-      <div class="key-point">
-        <strong>Association Types:</strong>
-        <ul style="margin: 10px 0 0 20px;">
-          <li><strong>One-to-One:</strong> One person has one passport</li>
-          <li><strong>One-to-Many:</strong> One teacher teaches many students</li>
-          <li><strong>Many-to-One:</strong> Many students have one teacher</li>
-          <li><strong>Many-to-Many:</strong> Many teachers teach many students</li>
+            <li>🔹 Many-to-Many: Many teachers teach many students</li>
+
         </ul>
-      </div>
+
     </div>
 
-    <div class="note-card" id="q3" style="border-left-color: #059669;">
-      <h1>3. ENCAPSULATION</h1>
-      <div class="subtitle">Object-Oriented Programming (OOP) Concept</div>
+    <div class="section">
 
-      <p>
-        Encapsulation is the process of hiding the internal state of an object and restricting access to it by using getter and setter methods.
-      </p>
+        <h2>3. ENCAPSULATION</h2>
 
-      <p>
-        It allows us to protect the data and expose only what is necessary.
-      </p>
+        <p class="definition">Encapsulation is the process of hiding the internal state of an object and restricting access to it by using getter and setter methods.It allows us to protect the data and expose only what’s necessary. —- We achieve encapsulation by declaring class variables as private and providing public methods to access or update them. — This improves security, maintainability, and flexibility of code.</p>
 
-      <p>
-        We achieve encapsulation by declaring class variables as private and providing public methods to access or update them.
-      </p>
-
-      <div class="key-point">
-        Encapsulation improves <strong>security</strong>, <strong>maintainability</strong>, and <strong>flexibility</strong> of code.
-      </div>
     </div>
 
-    <div class="note-card" id="q4" style="border-left-color: #dc2626;">
-      <h1>4. ABSTRACTION</h1>
-      <div class="subtitle">Object-Oriented Programming (OOP) Concept</div>
+    <div class="section">
 
-      <p>
-        Abstraction in Java is the process of hiding the implementation details and exposing only the necessary functionalities to the user.
-      </p>
+        <h2>4. ABSTRACTION</h2>
 
-      <p>
-        It helps in reducing complexity and increasing code reusability.
-      </p>
+        <p class="definition">Abstraction in Java is the process of hiding the implementation details and exposing only the necessary functionalities to the user. — It helps in reducing complexity and increasing code reusability. — We achieve abstraction using <span class="highlight">abstract classes</span> and <span class="highlight">interfaces</span>.</p>
 
-      <div class="key-point">
-        We achieve abstraction using <strong>abstract classes</strong> and <strong>interfaces</strong>.
-      </div>
+        <p class="example"><strong>For example</strong>, in my project, I used interfaces to define service contracts between layers — so that the implementation could vary without affecting consumers.</p>
 
-      <div class="highlight">
-        <strong>Example:</strong> In projects, interfaces are used to define service contracts between layers so implementations can vary without affecting consumers.
-      </div>
-
-      <div class="code-block">
-        <code>abstract class Animal {
-    abstract void makeSound();
-
-    void eat() {
-        System.out.println("Animal is eating");
-    }
-}
-
-class Dog extends Animal {
-    void makeSound() {
-        System.out.println("Dog barks");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Animal a = new Dog();
-        a.makeSound();
-        a.eat();
-    }
-}</code>
-      </div>
     </div>
 
-    <div class="note-card" id="q5" style="border-left-color: #ea580c;">
-      <h1>5. POLYMORPHISM</h1>
-      <div class="subtitle">Object-Oriented Programming (OOP) Concept</div>
+    <div class="section">
 
-      <p>
-        <strong>Polymorphism</strong> means one name, many forms.
-      </p>
+        <h2>5. POLYMORPHISM</h2>
 
-      <div class="key-point">
-        It allows us to use the same method name but perform different behavior depending on the object or context.
-      </div>
+        <p class="definition"><strong>Polymorphism</strong> means "<span class="highlight">one name, many forms</span>". — It allows us to <span class="highlight">use the same method name</span> but <span class="highlight">do different things</span> depending on the object or context.</p>
 
-      <h2>Compile-time Polymorphism (Method Overloading)</h2>
-      <div class="code-block">
-        <code>class Calculator {
-    int add(int a, int b) {
-        return a + b;
-    }
+        <h3>Compile-time Polymorphism (Method Overloading)</h3>
 
-    double add(double a, double b) {
-        return a + b;
-    }
-}</code>
-      </div>
+        <p><em>[Details for Method Overloading to be added here]</em></p>
 
-      <h2>Runtime Polymorphism (Method Overriding)</h2>
-      <div class="code-block">
-        <code>class Animal {
-    void makeSound() {
-        System.out.println("Some sound");
-    }
-}
+        <h3>Runtime Polymorphism (Method Overriding)</h3>
 
-class Dog extends Animal {
-    @Override
-    void makeSound() {
-        System.out.println("Bark");
-    }
-}
+        <p><em>[Details for Method Overriding to be added here]</em></p>
 
-public class Main {
-    public static void main(String[] args) {
-        Animal a = new Dog();
-        a.makeSound();
-    }
-}</code>
-      </div>
     </div>
-  </div>
+
+    <div class="section">
+
+        <h2>6. INHERITANCE</h2>
+
+        <p class="definition">Inheritance in Java is an OOP concept where one class inherits the fields and methods of another class using the <code>extends</code> keyword.It promotes <span class="highlight">code reuse</span> and supports the <span class="highlight">‘is-a’</span> relationship.</p>
+
+        <h4>🧠 Real-life Example:</h4>
+
+        <ul>
+
+            <li>Dog is an Animal</li>
+
+            <li>So, Dog can use all common features of Animal like <code>eat()</code>, <code>sleep()</code></li>
+
+            <li>→ That’s Inheritance</li>
+
+        </ul>
+
+        <h3>Diamond Problem Explanation</h3>
+
+        <p><em>[Details for Diamond Problem to be added here]</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>7. DATA HIDING</h2>
+
+        <p class="definition">Data Hiding in Java is the concept of restricting direct access to class fields by making them private, and exposing them through public getter and setter methods. —- This ensures that the internal state of the object is protected and cannot be modified directly from outside the class. — It’s a key principle of object-oriented programming and is often implemented using encapsulation.</p>
+
+        <h3>Data Hiding vs Encapsulation</h3>
+
+        <p><em>[Details for Data Hiding vs Encapsulation to be added here]</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>8. STATIC BINDING</h2>
+
+        <p class="definition">Static Binding in Java is a process where method calls are resolved at compile-time. —- This generally happens when methods are private, static, final, or constructors — since these cannot be overridden. —- <span class="highlight">For example</span>, if a static method is re-declared in a subclass, and we call it using a parent reference, the method in the parent class gets called because of static binding.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>9. METHOD OVERLOADING</h2>
+
+        <p class="definition">Method Overloading means having multiple methods in the same class with the same name but different parameters (number, type, or order).</p>
+
+        <h3>Rules of Method Overloading</h3>
+
+        <p><em>[Details for Rules of Method Overloading to be added here]</em></p>
+
+        <h3>9.1 Rules of Overriding in terms of Access Modifiers</h3>
+
+        <p><em>[Details for Rules of Overriding in terms of Access Modifiers to be added here]</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>10. EXCEPTION HANDLING</h2>
+
+        <p class="definition"><strong>Exception Handling</strong> is a way to <span class="highlight">detect and handle errors</span> during program execution <span class="highlight">without crashing the program</span>. —- Exception Handling in Java is a mechanism to gracefully handle runtime and compile-time errors without breaking the flow of the program. —-- Java provides <code>try-catch-finally</code>, <code>throw</code>, and <code>throws</code> for handling and declaring exceptions. —- There are two types: checked (which must be handled) and unchecked (which are optional). —- <code>finally</code> block always runs regardless of exception.</p>
+
+        <h3>Types of Exceptions</h3>
+
+        <h4>Checked Exception</h4>
+
+        <p><em>[Details for Checked Exception to be added here]</em></p>
+
+        <h3>Basic Rules of Exception Handling:</h3>
+
+        <p><em>[Details for Basic Rules of Exception Handling to be added here]</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>11. DYNAMIC LINKING</h2>
+
+        <p class="definition">The <span class="highlight">code of a class/method</span> is <span class="highlight">linked (loaded)</span> into memory <span class="highlight">at runtime</span>, <span class="highlight">not at compile-time</span>. — Dynamic linking is the process of resolving method or class references during runtime rather than compile-time. — This enables features like method overriding and polymorphism. —- While it adds flexibility and supports extensibility, it can slightly impact performance due to runtime resolution overhead. — However, modern JVMs use Just-In-Time (JIT) compilation and caching to optimize this and minimize the performance impact.</p>
+
+        <h3>Impact on Performance:</h3>
+
+        <p><em>[Details for Impact on Performance to be added here]</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>12. Default implementation of equals() and hashCode()</h2>
+
+        <p class="definition"><code>equals()</code> by default checks if <span class="highlight">both objects are exactly the same in memory</span> (same reference). —-- <code>hashCode()</code> by default returns a number that’s based on the <span class="highlight">memory address</span> of the object (not actual content). —-- By default, both <code>equals()</code> and <code>hashCode()</code> methods are inherited from the Object class. —- <code>equals()</code> checks for reference equality — i.e., whether two object references point to the same object in memory. <code>hashCode()</code> generates a number typically derived from the memory address of the object.</p>
+
+        <p class="tip">If you want to compare object contents, you must override both methods.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>13. CLONING</h2>
+
+        <p class="definition"><span class="highlight">Object cloning</span> = creating <span class="highlight">a new object that is an exact copy of an existing one</span> → same field values, separate memory location. —--- Java gives us the <code>clone()</code> method inside <code>java.lang.Object</code></p>
+
+        <h3>Rules for Using clone()</h3>
+
+        <p><em>[Details for Rules for Using clone() to be added here]</em></p>
+
+        <h3>Shallow vs Deep Cloning</h3>
+
+        <h4>Shallow:</h4>
+
+        <p><em>[Details for Shallow Cloning to be added here]</em></p>
+
+        <h4>Deep:</h4>
+
+        <p><em>[Details for Deep Cloning to be added here]</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>14. WHY STRING IS IMMUTABLE CLASS</h2>
+
+        <p class="definition">String is immutable to ensure <span class="highlight">security, performance, and reliability</span> — especially because it’s used in core places like class names, keys in collections, and configuration. —--- Since Strings are used in critical areas like <span class="highlight">class loading, file paths, URLs, and keys in HashMaps</span>, immutability ensures that their values <span class="highlight">cannot be changed</span> once created, avoiding security risks. —-- It also helps in <span class="highlight">string interning</span>, where Java reuses objects to save memory. —-- Furthermore, immutability makes strings <span class="highlight">thread-safe</span>, as multiple threads can safely share a single String instance without synchronization.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>15. IMMUTABILITY</h2>
+
+        <p class="definition">❝ Once an object is created, you cannot change its state (fields/values) ❞ —— Immutability means an object’s state cannot be changed after it is created. —- It ensures thread safety, improves code readability, supports caching, and avoids side effects. —- Immutable classes in Java like String, Integer, and LocalDate help avoid synchronization issues in multithreaded environments. —-- To make a class immutable, we declare it as final, use private final fields, and avoid setters.</p>
+
+        <h3>15.1 HOW TO CREATE CUSTOM IMMUTABLE CLASS</h3>
+
+        <ul>
+
+            <li><strong>Make class final</strong> → so it can’t be subclassed</li>
+
+            <li><strong>Make all fields private and final</strong></li>
+
+            <li><strong>No setter methods</strong></li>
+
+            <li><strong>Initialize fields in constructor</strong></li>
+
+            <li><strong>Return copies of mutable objects from getters (deep copy if needed)</strong></li>
+
+        </ul>
+
+        <h4>Custom Immutable Class:</h4>
+
+        <p><em>[Details for Custom Immutable Class to be added here]</em></p>
+
+        <h3>15.2 IMPORTANCE OF IMMUTABILITY</h3>
+
+        <p><em>[Details for Importance of Immutability to be added here]</em></p>
+
+        <h3>15.3 IMMUTABILITY vs MUTABILITY</h3>
+
+        <p><em>[Details for Immutability vs Mutability to be added here]</em></p>
+
+        <h3>15.4 ADVANTAGES of IMMUTABILITY</h3>
+
+        <p class="definition">Immutability gives you safety, simplicity, and efficiency. — Once an object’s state can’t change, many problems automatically go away.</p>
+
+        <h4>Is an Immutable Class Thread-Safe?</h4>
+
+        <p><strong>Yes, an immutable class is inherently thread-safe</strong></p>
+
+        <p>Immutability provides several benefits: thread safety, safe sharing of objects, better caching, and easier debugging. Since immutable objects cannot be changed after construction, they are inherently thread-safe — multiple threads can access them without synchronization. Immutable objects like String, Integer, and LocalDate can be safely used in concurrent environments without the risk of data inconsistency.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>16. Final mean(Importance of final in security)</h2>
+
+        <p class="definition"><strong>The final keyword means "cannot be changed anymore".</strong> <strong>variables → value can’t change —</strong> <strong>methods → can’t override —-</strong> <strong>classes → can’t extend</strong> <strong>— DEFINATION →</strong> The final keyword improves security by enforcing restrictions. — final fields ensure values like configuration parameters, constants, or credentials cannot be changed once set. — final methods and classes prevent malicious or unintended overriding and subclassing, which helps preserve the integrity of critical logic and business rules. — This makes the code more predictable, tamper-proof, and safe — especially in frameworks, APIs, or security-sensitive modules.</p>
+
+        <h3>How does final improve Security</h3>
+
+        <p><em>[Details for How final improves Security to be added here]</em></p>
+
+    </div>
+
+    <h1>Collection FrameWorks + OOPS</h1>
+
+    <div class="section">
+
+        <h2>17. LinkedHashSet</h2>
+
+        <p class="definition">A LinkedHashSet is a Set that stores unique elements and also remembers the order in which elements were added.</p>
+
+        <ul>
+
+            <li><strong>Inheritance</strong> → LinkedHashSet extends <code>HashSet</code> and internally uses a <span class="highlight">HashMap + doubly linked list</span>.</li>
+
+            <li><strong>Uniqueness</strong> → Because of Hashing, duplicates are not allowed.</li>
+
+            <li><strong>Ordering</strong> → Maintains <span class="highlight">insertion order</span> with the help of a linked list that connects entries. Order preserved, no duplicate Alice</li>
+
+            <li><strong>Complexity</strong> → Operations like <code>add()</code>, <code>remove()</code>, <code>contains()</code> are usually <span class="highlight">O(1)</span> (because of hashing).</li>
+
+            <li><strong>Use Case</strong> → When we need a Set that prevents duplicates but also <span class="highlight">keeps the insertion order</span>.</li>
+
+            <li><strong>Thread safety</strong> → It is not thread safe. And to make thread safe we need to do <code>Collections.synchronizedSet(new LinkedHashSet&lt;&gt;())</code></li>
+
+        </ul>
+
+        <h4>Default Capacity</h4>
+
+        <p><strong>Default capacity: 16</strong></p>
+
+        <p><strong>Load factor: 0.75</strong></p>
+
+        <p><strong>Default threshold: 12</strong> (16 × 0.75)</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>18. TreeSet</h2>
+
+        <p class="definition">A TreeSet is a Set that stores unique elements in a sorted order (ascending by default).</p>
+
+        <ul>
+
+            <li><strong>Inheritance</strong> → TreeSet implements <code>NavigableSet</code> and is backed by a <span class="highlight">TreeMap</span> (Red-Black Tree).</li>
+
+            <li><strong>Ordering</strong> → Elements are <span class="highlight">always sorted</span> (natural order or using a custom <code>Comparator</code>).</li>
+
+            <li><strong>Uniqueness</strong> → No duplicates (because it’s a Set).</li>
+
+            <li><strong>Complexity</strong> → Operations like <code>add()</code>, <code>remove()</code>, <code>contains()</code> are <span class="highlight">O(log n)</span> (tree traversal).</li>
+
+            <li><strong>Nulls</strong> → Doesn’t allow null elements (throws <code>NullPointerException</code>).</li>
+
+            <li><strong>Use Case</strong> → When you need <span class="highlight">sorted unique elements</span> and fast retrieval in sorted order.</li>
+
+            <li><strong>Thread safety</strong> → It is not thread safe. And to make thread safe we need to do <code>Collections.synchronizedSortedSet(new TreeSet&lt;&gt;())</code></li>
+
+            <li>Iterator fail-fast hota hai (ConcurrentModificationException).</li>
+
+        </ul>
+
+        <h3>TreeSet / TreeMap</h3>
+
+        <ul>
+
+            <li>Backed by Red-Black Tree.</li>
+
+            <li><strong>No default size</strong> (because it’s not bucket-based like <code>HashMap</code>).</li>
+
+            <li>It grows dynamically as you add elements.</li>
+
+        </ul>
+
+        <p><strong>For String Sorted order (lexicographical).</strong></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>19. LinkedHashMap</h2>
+
+        <p class="definition">A LinkedHashMap is like a HashMap but it remembers the order in which keys were inserted.</p>
+
+        <ul>
+
+            <li><strong>Inheritance</strong> → LinkedHashMap extends <code>HashMap</code>.</li>
+
+            <li><strong>Data structure</strong> → Internally it uses <span class="highlight">HashTable + doubly-linked list</span>.</li>
+
+            <li><strong>Ordering</strong> → Maintains <span class="highlight">insertion order</span> (or access order if we enable it).</li>
+
+            <li><strong>Nulls</strong> → Allows one null key and multiple null values.</li>
+
+            <li><strong>Performance</strong> → Similar to <code>HashMap</code>, O(1) for <code>put()</code>, <code>get()</code>, <code>remove()</code> on average.</li>
+
+            <li><strong>Special feature</strong> → Can be configured in <span class="highlight">access-order mode</span> (good for cache implementations like LRU Cache).</li>
+
+            <li><strong>Use case</strong> → When we want <span class="highlight">fast lookup + predictable iteration order</span>.</li>
+
+        </ul>
+
+        <h3>HashSet / LinkedHashSet</h3>
+
+        <ul>
+
+            <li>Internally use <code>HashMap</code> / <code>LinkedHashMap</code>.</li>
+
+            <li><strong>Default Capacity:</strong> 16</li>
+
+            <li><strong>Load Factor:</strong> 0.75</li>
+
+            <li>That’s why their behavior is exactly same as <code>HashMap</code>.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>20. TreeMap</h2>
+
+        <p class="definition">A TreeMap in Java is a map that stores key–value pairs in a sorted order of keys (ascending by default).</p>
+
+        <ul>
+
+            <li><strong>Inheritance</strong> → Implements <code>NavigableMap</code>, backed by a <span class="highlight">Red-Black Tree</span>.</li>
+
+            <li><strong>Ordering</strong> → Keys are sorted by:
+
+                <ul>
+
+                    <li><strong>Natural ordering</strong> (if keys implement <code>Comparable</code>), OR</li>
+
+                    <li>A <strong>custom Comparator</strong> (passed in constructor).</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Uniqueness</strong> → Keys must be unique (like any Map).</li>
+
+            <li><strong>Nulls</strong> → Doesn’t allow <span class="highlight">null keys</span> (throws <code>NullPointerException</code>), but allows <span class="highlight">multiple null values</span>.</li>
+
+            <li><strong>Complexity</strong> → Operations like <code>put()</code>, <code>get()</code>, <code>remove()</code> are <span class="highlight">O(log n)</span> (because of tree traversal).</li>
+
+            <li><strong>Use Case</strong> → When you need a <span class="highlight">sorted dictionary/map</span> for fast search and ordered iteration.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>21. ArrayList</h2>
+
+        <p class="definition">An ArrayList in Java is a resizable array that can grow or shrink dynamically. It maintains insertion order and allows duplicate elements.</p>
+
+        <ul>
+
+            <li><strong>Package</strong> → <code>java.util</code></li>
+
+            <li><strong>Internally</strong> → Uses a <span class="highlight">dynamic array</span>.</li>
+
+            <li><strong>Default Capacity</strong> → In Java 8+, starts with <span class="highlight">0</span>, becomes <span class="highlight">10</span> when first element is added.</li>
+
+            <li><strong>Growth Mechanism</strong> → When full, new capacity = oldCapacity × 1.5.</li>
+
+            <li><strong>Ordering</strong> → Maintains insertion order, supports random access (<code>get(index)</code> is O(1)).</li>
+
+            <li><strong>Nulls</strong> → Multiple nulls allowed.</li>
+
+            <li><strong>Performance</strong>:
+
+                <ul>
+
+                    <li><code>get(index)</code> → O(1)</li>
+
+                    <li><code>add()</code> → Amortized O(1)</li>
+
+                    <li><code>remove()</code> → O(n) (because shifting needed)</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Use Case</strong> → Best when you need <span class="highlight">fast random access</span> and <span class="highlight">frequent read operations</span>, but not ideal for lots of insertions/removals in the middle.</li>
+
+        </ul>
+
+        <h3>Difference with LinkedList (Interview Point)</h3>
+
+        <p>In Java 8 and later, an ArrayList starts with an initial capacity of 0, but when the first element is added, it becomes 10. Whenever it gets full, it increases its capacity by 1.5 times the old capacity.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>22. Vector</h2>
+
+        <p class="definition">A Vector in Java is a growable array (like ArrayList) that is synchronized, meaning it is thread-safe but slower. It allows duplicates, maintains insertion order, and allows null values.</p>
+
+        <ul>
+
+            <li><strong>Package →</strong> <code>java.util</code></li>
+
+            <li><strong>Internally →</strong> Uses a dynamic array (like <code>ArrayList</code>).</li>
+
+            <li><strong>Default Capacity →</strong> 10 (doubles ×2 when full).</li>
+
+            <li><strong>Performance:</strong>
+
+                <ul>
+
+                    <li><code>get(index)</code> → O(1)</li>
+
+                    <li><code>add(element)</code> → Amortized O(1), but O(n) if resizing occurs</li>
+
+                    <li><code>remove(index)</code> → O(n) (shifting elements)</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Nulls →</strong> Multiple nulls allowed.</li>
+
+            <li><strong>Duplicates →</strong> Allowed.</li>
+
+            <li><strong>Thread Safety →</strong> All methods are <span class="highlight">synchronized</span> → safe for multithreading, but <span class="highlight">slower</span> than <code>ArrayList</code>.</li>
+
+            <li><strong>Use Case →</strong> Legacy multithreaded applications (before <code>ArrayList</code> and <code>CopyOnWriteArrayList</code>).</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>23. LinkedList</h2>
+
+        <p class="definition">A LinkedList in Java is a <span class="highlight">doubly linked list</span> implementation that stores elements in <span class="highlight">nodes</span> (each node has data + references to previous and next node). It allows <span class="highlight">duplicates</span> and <span class="highlight">null values</span>.</p>
+
+        <ul>
+
+            <li><strong>Package</strong> → <code>java.util</code></li>
+
+            <li><strong>Internally</strong> → Uses a <span class="highlight">doubly linked list</span> (each node has data, prev, and next).</li>
+
+            <li><strong>Default Capacity</strong> → No fixed capacity (starts empty, grows dynamically with nodes).</li>
+
+            <li><strong>Performance</strong>:
+
+                <ul>
+
+                    <li><code>addFirst()</code>, <code>addLast()</code> → O(1)</li>
+
+                    <li><code>removeFirst()</code>, <code>removeLast()</code> → O(1)</li>
+
+                    <li><code>get(index)</code> → O(n) (need traversal)</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Nulls</strong> → Multiple nulls allowed.</li>
+
+            <li><strong>Use Case</strong> → When frequent <span class="highlight">insertions/deletions</span> are needed (especially at beginning or middle).</li>
+
+        </ul>
+
+        <h3>ArrayList vs LinkedList (Quick Table)</h3>
+
+        <p>LinkedList is a doubly linked list implementation in Java. It has no default capacity, grows dynamically, and is best for frequent insertions/deletions, but slower than ArrayList for random access.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>24. HashMap</h2>
+
+        <p class="definition">HashMap is a <span class="highlight">key-value based collection</span> in Java that stores unique keys and allows null values. Order is not guaranteed. —--- HashMap is a <span class="highlight">non-synchronized, key-value collection</span> that uses <span class="highlight">hashing</span> for fast access. It has <span class="highlight">default capacity 16</span>, load factor <span class="highlight">0.75</span>, handles <span class="highlight">collisions with linked list/tree</span>, and allows <span class="highlight">1 null key and multiple null values</span>. Average operations are <span class="highlight">O(1)</span>, worst case <span class="highlight">O(log n)</span>.</p>
+
+        <ul>
+
+            <li>Internally works on <span class="highlight">array + linked list + balanced tree (since Java 8)</span>.</li>
+
+            <li><strong>Default capacity:</strong> 16</li>
+
+            <li><strong>Load factor:</strong> 0.75 (rehashing happens when 75% filled).</li>
+
+            <li><strong>Time Complexity:</strong>
+
+                <ul>
+
+                    <li><code>get()</code> → Average O(1), Worst O(log n) (if hash collisions → treeify)</li>
+
+                    <li><code>put()</code> → Average O(1), Worst O(log n)</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Null:</strong>
+
+                <ul>
+
+                    <li><strong>One null key allowed</strong>, multiple null values allowed.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Thread safety:</strong> Not synchronized. Use <code>ConcurrentHashMap</code> if multithreading needed.</li>
+
+        </ul>
+
+        <h3>1. Internals (How HashMap Works)</h3>
+
+        <ul>
+
+            <li><strong>Data Structure:</strong> HashMap internally ek <span class="highlight">array of <code>Node&lt;K,V&gt;</code> (buckets)</span> use karta hai.</li>
+
+            <li><strong>Node Structure:</strong> Each entry is stored as a <span class="highlight">Node object</span> → contains:
+
+                <ul>
+
+                    <li>key</li>
+
+                    <li>value</li>
+
+                    <li>hash (computed using <code>hashCode()</code> of key)</li>
+
+                    <li>next (reference to next node in same bucket → collision handling)</li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+        <h3>2. Default Capacity & Load Factor</h3>
+
+        <ul>
+
+            <li><strong>Default capacity:</strong> 16 buckets.</li>
+
+            <li><strong>Load factor:</strong> 0.75 → Jab 75% buckets fill ho jaati hain, rehashing hoti hai.</li>
+
+            <li><strong>Resize Mechanism:</strong>
+
+                <ul>
+
+                    <li>New capacity = old capacity × 2 (double hota hai).</li>
+
+                    <li>All existing nodes ko <span class="highlight">rehash karke nayi array me redistribute</span> kiya jata hai.</li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+        <p>👉 Example: 16 buckets × 0.75 = 12 elements ke baad resize trigger hota hai.</p>
+
+        <h3>3. Hashing & Index Calculation</h3>
+
+        <p>HashMap <span class="highlight">key.hashCode()</span> ka use karta hai. Hash ko aur optimize karne ke liye ek function use hota hai:</p>
+
+        <p><em>[Details for Hash function to be added here]</em></p>
+
+        <h3>4. Collision Handling</h3>
+
+        <ul>
+
+            <li><strong>Collision</strong> = jab do keys ka same bucket index aata hai.</li>
+
+            <li>HashMap Java 7:
+
+                <ul>
+
+                    <li>Collision handle using <span class="highlight">Linked List chaining</span>.</li>
+
+                </ul>
+
+            </li>
+
+            <li>HashMap Java 8+:
+
+                <ul>
+
+                    <li>If bucket size > <span class="highlight">8</span> → linked list convert ho jata hai into <span class="highlight">Balanced Tree (Red-Black Tree)</span>.</li>
+
+                    <li>Time complexity: O(n) → O(log n).</li>
+
+                    <li>If bucket size < <span class="highlight">6</span> → tree dobara list ban jata hai.</li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+        <h3>5. Time Complexity</h3>
+
+        <ul>
+
+            <li><strong>get() / put():</strong>
+
+                <ul>
+
+                    <li>Average case: O(1)</li>
+
+                    <li>Worst case: O(log n) (treeified buckets)</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Iteration:</strong> O(n)</li>
+
+        </ul>
+
+        <h3>7. Fail-fast Behavior</h3>
+
+        <p>Agar iteration ke time pe HashMap structure (add/remove) change hua, toh <span class="highlight">ConcurrentModificationException</span> throw hota hai. Reason: HashMap iterator is fail-fast.</p>
+
+        <h3>8. Thread Safety</h3>
+
+        <ul>
+
+            <li>HashMap is <span class="highlight">not synchronized</span>.</li>
+
+            <li>Multithreaded environment me data corruption ho sakta hai.</li>
+
+            <li>Solution:
+
+                <ul>
+
+                    <li>Use <code>Collections.synchronizedMap(new HashMap&lt;&gt;())</code> → but ye global lock hai (performance degrade hoti hai).</li>
+
+                    <li>Better → <code>ConcurrentHashMap</code> (segmented locking).</li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+        <h3>9. Important Constructors</h3>
+
+        <p><em>[Details for Important Constructors to be added here]</em></p>
+
+        <h3>10. When to Use HashMap? (Real Life)</h3>
+
+        <ul>
+
+            <li>Dictionary/Key-Value store</li>
+
+            <li>Caching (username → user object)</li>
+
+            <li>Lookups (employeeId → employee record)</li>
+
+            <li>Frequency counting (word → frequency)</li>
+
+        </ul>
+
+        <h3>Comparison Table (HashMap, Hashtable, ConcurrentHashMap, LinkedHashMap)</h3>
+
+        <p><strong>Interview 2-liner Summary</strong></p>
+
+        <ul>
+
+            <li><em>HashMap</em> → Fast, non-thread-safe.</li>
+
+            <li><em>Hashtable</em> → Old, synchronized but slow, no nulls.</li>
+
+            <li><em>ConcurrentHashMap</em> → Modern thread-safe alternative, no null key, fail-safe iterator.</li>
+
+            <li><em>LinkedHashMap</em> → Predictable iteration order (insertion/access).</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>25. Hashtable</h2>
+
+        <p class="definition">A Hashtable in Java is a legacy class (before Java Collections Framework) that stores key-value pairs in a hash table data structure. It does not allow null keys or null values and is synchronized (thread-safe).</p>
+
+        <ul>
+
+            <li><strong>Package →</strong> <code>java.util</code></li>
+
+            <li><strong>Internally →</strong> Uses an array of buckets where each bucket stores a linked list of key-value pairs (similar to HashMap but older).</li>
+
+            <li><strong>Default Capacity →</strong> 11 (initial), grows by 2*oldCapacity + 1 when rehashed.</li>
+
+            <li><strong>Load Factor →</strong> 0.75 (default).</li>
+
+            <li><strong>Performance:</strong>
+
+                <ul>
+
+                    <li><code>put()</code> → Average O(1), Worst O(n).</li>
+
+                    <li><code>get()</code> → Average O(1), Worst O(n).</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Nulls →</strong> Not allowed (neither key nor value).</li>
+
+            <li><strong>Thread Safety →</strong> Methods are <span class="highlight">synchronized</span> → multiple threads can safely access, but slower than HashMap.</li>
+
+            <li><strong>Use Case →</strong> When you specifically need a thread-safe map in legacy code. For modern apps, prefer <code>ConcurrentHashMap</code>.</li>
+
+        </ul>
+
+        <h3>HashMap vs Hashtable</h3>
+
+        <p><span class="highlight">HashMap</span> is modern and faster, but it is <span class="highlight">not thread-safe</span>. <span class="highlight">Hashtable</span> is old, synchronized (thread-safe), but slower. Hashtable also does <span class="highlight">not allow null keys or null values</span>. In today’s applications, if we need thread safety, we use <span class="highlight">ConcurrentHashMap</span> instead.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>26. HashSet</h2>
+
+        <p class="definition">A HashSet in Java is a collection that stores <span class="highlight">unique elements</span>. It is backed by a <code>HashMap</code> internally, does not maintain insertion order, and allows a single null element. <span class="highlight">HashSet is implemented using HashMap, allows only unique elements, one null, and gives O(1) average performance for add/remove/search.</span></p>
+
+        <ul>
+
+            <li><strong>Package →</strong> <code>java.util</code></li>
+
+            <li><strong>Internally →</strong> Uses a <code>HashMap</code> where elements are stored as keys and a dummy object as value.</li>
+
+            <li><strong>Default Capacity →</strong> 16</li>
+
+            <li><strong>Load Factor →</strong> 0.75 (rehashing when 75% full).</li>
+
+            <li><strong>Performance:</strong>
+
+                <ul>
+
+                    <li><code>add()</code>, <code>remove()</code>, <code>contains()</code> → Average O(1), Worst O(n) (if hash collisions).</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Nulls →</strong> One null element allowed.</li>
+
+            <li><strong>Duplicates →</strong> Not allowed (duplicate values ignored).</li>
+
+            <li><strong>Ordering →</strong> No guarantee of order.</li>
+
+            <li><strong>Use Case →</strong> When you need a collection of unique items with fast lookup.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>27. Difference Between Hashmap vs Concurrent Hashmap</h2>
+
+        <p><strong>HashMap</strong>:A fast but non-thread-safe Map implementation used in single-threaded scenarios. <strong>ConcurrentHashMap</strong>: A thread-safe Map implementation that supports high concurrency using fine-grained locking and lock-free reads.</p>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Aspect</th>
+
+                    <th>HashMap</th>
+
+                    <th>ConcurrentHashMap</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td><strong>Definition</strong></td>
+
+                    <td>HashMap is a <strong>non-synchronized key–value data structure</strong> used to store mappings, mainly for <strong>single-threaded</strong> scenarios.</td>
+
+                    <td>ConcurrentHashMap is a <strong>thread-safe Map implementation</strong> designed for <strong>highly concurrent (multi-threaded)</strong> environments.</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Thread Safety</strong></td>
+
+                    <td>❌ Not thread-safe</td>
+
+                    <td>✔️ Thread-safe</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Synchronization Mechanism</strong></td>
+
+                    <td>No synchronization at all</td>
+
+                    <td>Fine-grained locking + CAS</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Locking Level</strong></td>
+
+                    <td>❌ No locks</td>
+
+                    <td>✔️ Bucket-level locking (Java 8+)</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Read Operations</strong></td>
+
+                    <td>Fast but <strong>unsafe</strong></td>
+
+                    <td><strong>Lock-free &amp; safe</strong></td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Write Operations</strong></td>
+
+                    <td>Fast but may cause <strong>data corruption</strong></td>
+
+                    <td>Slightly slower but <strong>consistent &amp; safe</strong></td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Null Keys</strong></td>
+
+                    <td>✔️ Allows one null key</td>
+
+                    <td>❌ Null key not allowed</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Null Values</strong></td>
+
+                    <td>✔️ Allowed</td>
+
+                    <td>❌ Not allowed</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Iterator Type</strong></td>
+
+                    <td>Fail-fast</td>
+
+                    <td>Fail-safe (weakly consistent)</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Concurrent Modification</strong></td>
+
+                    <td>Throws ConcurrentModificationException</td>
+
+                    <td>No exception</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Internal Structure</strong></td>
+
+                    <td>Array + LinkedList / Red-Black Tree</td>
+
+                    <td>Same structure + concurrency controls</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Memory Visibility</strong></td>
+
+                    <td>❌ No guarantee</td>
+
+                    <td>✔️ Guaranteed using volatile</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Rehashing</strong></td>
+
+                    <td>Unsafe in multi-threading</td>
+
+                    <td>Thread-safe incremental resizing</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Performance (Single Thread)</strong></td>
+
+                    <td>⭐⭐⭐⭐ Very fast</td>
+
+                    <td>⭐⭐⭐ Slightly slower</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Performance (Multi Thread)</strong></td>
+
+                    <td>❌ Unsafe</td>
+
+                    <td>⭐⭐⭐⭐ High scalability</td>
+
+                </tr>
+
+                <tr>
+
+                    <td><strong>Use Case</strong></td>
+
+                    <td>Local variables, temporary data</td>
+
+                    <td>Cache, shared state, concurrent access</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <h1>Spring Boot Advanced</h1>
+
+    <div class="section">
+
+        <h2>28. Spring IOC</h2>
+
+        <p class="definition">Instead of you creating objects yourself in class manner what we do <code>Employee e = new Employee();</code> we use new keywords ourselves in the program but when we go with spring framework. Spring framework does this for us. Spring creates an Employee object and when you ask for the employee object it gives you reference to that employee object that means the control is inverted from you creating objects to spring creating objects so this is called inversion of control.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>29. ApplicationContext</h2>
+
+        <p class="definition"><em>ApplicationContext is basically the IoC container in Spring. It’s responsible for creating beans, injecting dependencies, and managing their lifecycle. For example, instead of me doing <code>new Employee()</code>, I just ask the <code>ApplicationContext</code> for <code>Employee</code>, and it gives me a fully initialized, wired object. It’s like the factory + manager of all beans in my application.</em></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>30. ApplicationContext aur BeanFactory</h2>
+
+        <p class="definition"><strong>BeanFactory is the simplest IoC container in Spring</strong>. — <strong>ApplicationContext is a superset of BeanFactory</strong>.</p>
+
+        <h3>Bean Factory :</h3>
+
+        <ul>
+
+            <li>Ye <span class="highlight">sirf beans create karta hai aur dependencies inject karta hai.</span></li>
+
+            <li>Ye beans ko lazily (jab zarurat ho tab) initialize karta hai.</li>
+
+            <li>Old Spring versions me commonly use hota tha.</li>
+
+        </ul>
+
+        <h3>ApplicationContext :</h3>
+
+        <p>Ye BeanFactory ki saari cheezein karta hai <span class="highlight">+ extra features</span> deta hai</p>
+
+        <ul>
+
+            <li>Eager initialization (beans ko upfront bana deta hai for performance).</li>
+
+            <li>Event handling support (publish–subscribe model).</li>
+
+            <li>Internationalization (multi-language messages).</li>
+
+            <li>AOP support.</li>
+
+            <li>Integration with Spring MVC, Spring Data, etc.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>31. Spring configuration</h2>
+
+        <p class="definition"><strong>Spring configuration</strong> means <span class="highlight">telling Spring how your application should behave</span> — which beans (objects) to create, how they are connected, what scope, what lifecycle, and what their properties are.</p>
+
+        <p>Think of <span class="highlight">Spring</span> as a factory.</p>
+
+        <ul>
+
+            <li>You give it <span class="highlight">instructions</span> (configuration).</li>
+
+            <li>It creates and manages the objects for you.</li>
+
+            <li>You don’t have to manually create and link them with <code>new</code>.</li>
+
+        </ul>
+
+        <p>There are <span class="highlight">three common ways</span> to configure Spring:</p>
+
+        <ol>
+
+            <li><strong>XML Configuration</strong> – Old style, using XML files.</li>
+
+            <li><strong>Java-based Configuration</strong> – Using <code>@Configuration</code> and <code>@Bean</code> annotations.</li>
+
+            <li><strong>Annotation-based Configuration</strong> – Using annotations like <code>@Component</code>, <code>@Service</code>, <code>@Autowired</code> directly in your classes.</li>
+
+        </ol>
+
+    </div>
+
+    <div class="section">
+
+        <h2>32. OutOfMemoryError</h2>
+
+        <p class="definition">An <strong>OutOfMemoryError</strong> in Java happens when the JVM cannot allocate more memory for objects because the heap, metaspace, or other memory area is full and garbage collection cannot free enough space.</p>
+
+        <h3>Common causes:</h3>
+
+        <ul>
+
+            <li>Loading massive datasets (DB records, files, API responses) into memory at once.</li>
+
+            <li>Infinite object creation without release.</li>
+
+            <li>Memory leaks (objects still referenced but not needed).</li>
+
+            <li>Large caches that keep growing.</li>
+
+            <li>More concurrent requests → more objects created in memory at the same time.</li>
+
+            <li>If requests involve heavy processing or big data loads, memory fills up faster.</li>
+
+            <li>If code holds onto objects too long (e.g., session data, caches), the growth is multiplied.</li>
+
+            <li>Garbage Collector may not be able to keep up → heap fills → OOM.</li>
+
+        </ul>
+
+        <h3>Types (most common):</h3>
+
+        <ul>
+
+            <li><code>java.lang.OutOfMemoryError: Java heap space</code> → Heap is full.</li>
+
+            <li><code>java.lang.OutOfMemoryError: Metaspace</code> → Class metadata space is full.</li>
+
+            <li><code>java.lang.OutOfMemoryError: GC overhead limit exceeded</code> → GC runs too much but still can’t free memory.</li>
+
+        </ul>
+
+        <h3>Example Scenario:</h3>
+
+        <ul>
+
+            <li>Service reads a 1GB file into a single String.</li>
+
+            <li>Or a loop keeps adding objects into a <code>List</code> without clearing.</li>
+
+            <li>Or loading millions of records from DB into memory at once.</li>
+
+            <li>You have a REST API that fetches orders from DB in <strong>one go</strong> for each user.</li>
+
+            <li>With <strong>100 users</strong>, memory usage is fine.</li>
+
+            <li>Suddenly, traffic spikes to <strong>5,000 users</strong> at the same time.</li>
+
+            <li>Now thousands of <code>List&lt;Order&gt;</code> objects are in heap at once → memory gets full → <strong>OOM: Java heap space</strong>.</li>
+
+        </ul>
+
+        <h3>Fix / Prevention</h3>
+
+        <ol>
+
+            <li><strong>Pagination / Streaming</strong> – Load data in batches, not all at once.</li>
+
+            <li><strong>Rate Limiting / Backpressure</strong> – Limit concurrent heavy requests.</li>
+
+            <li><strong>Horizontal Scaling</strong> – Multiple service instances with load balancer.</li>
+
+            <li><strong>Fetch Only Required Fields</strong> – Use DTO, avoid full entity load.</li>
+
+            <li><strong>Async Processing</strong> – Use Kafka/RabbitMQ for heavy processing.</li>
+
+            <li><strong>Close Resources</strong> – Avoid memory leaks.</li>
+
+            <li><strong>Heap Size Tuning</strong> – Increase with <code>-Xmx</code> after fixing code issues.</li>
+
+        </ol>
+
+    </div>
+
+    <div class="section">
+
+        <h2>33. Redis Caching for High Traffic</h2>
+
+        <h3>How It Works</h3>
+
+        <ul>
+
+            <li><strong>Without Cache:</strong> Every request hits DB → High DB load → Slow response + risk of OOM.</li>
+
+            <li><strong>With Cache (Redis):</strong>
+
+                <ol>
+
+                    <li>First request → Fetch from DB → Store in Redis.</li>
+
+                    <li>Subsequent requests → Fetch directly from Redis.</li>
+
+                </ol>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>34. Memory Leak Management</h2>
+
+        <p class="definition"><strong>Memory Leak</strong> happens when objects are <span class="highlight">no longer needed</span> but <span class="highlight">still referenced</span> in memory, so Garbage Collector cannot remove them. — Over time, memory usage keeps growing until <strong>OutOfMemoryError</strong> occurs. —</p>
+
+        <h3>Fix / Prevention</h3>
+
+        <ol>
+
+            <li><strong>Close Resources Properly</strong>
+
+                <ul>
+
+                    <li>Use <code>try-with-resources</code> for DB, file, socket handling.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Remove References When Done</strong>
+
+                <ul>
+
+                    <li>Set objects to <code>null</code> if they are no longer needed.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Use WeakReference</strong>
+
+                <ul>
+
+                    <li>For caches, so GC can clear unused objects.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Unregister Listeners</strong>
+
+                <ul>
+
+                    <li>Remove listeners once they are no longer needed.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>ThreadLocal Cleanup</strong>
+
+                <ul>
+
+                    <li>Call <code>remove()</code> on <code>ThreadLocal</code> variables after use.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Cache with Eviction</strong>
+
+                <ul>
+
+                    <li>Use LRU or TTL to auto-remove old data.</li>
+
+                </ul>
+
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div class="section">
+
+        <h2>35. Circuit Breaker</h2>
+
+        <p class="definition"><strong>Circuit Breaker</strong> is a resilience pattern that *stops calling a failing remote service* so your system doesn’t get overwhelmed and failures don’t cascade. —- Circuit Breaker is a resilience pattern that prevents cascading failures by stopping calls to a repeatedly failing downstream service. It has three states — closed, open, half‑open — and uses thresholds ( failure rate, minimum calls, sliding window ) to decide when to open. When open it fails fast or uses fallback, then periodically tests the downstream before closing again.</p>
+
+        <h3>35.1 CIRCUIT BREAKER EXAMPLE :</h3>
+
+        <h4>Problem (no circuit breaker):</h4>
+
+        <p>Service A → calls B → B calls C. If C goes down or becomes very slow:</p>
+
+        <ul>
+
+            <li>B’s threads/connection pool wait for C (timeouts), threads get stuck.</li>
+
+            <li>B cannot serve other requests → B becomes slow/unavailable.</li>
+
+            <li>A sees timeouts/errors from B → A fails too → cascading failure across system.</li>
+
+        </ul>
+
+        <h4>With Circuit Breaker:</h4>
+
+        <ul>
+
+            <li>B detects failures to C, opens its CB for calls to C.</li>
+
+            <li>Instead of blocking threads waiting for C, B immediately returns fallback (or error) — threads freed quickly.</li>
+
+            <li>B stays healthy and can still serve other functionality. The cascade stops.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>36. Kafka</h2>
+
+        <p class="definition">Kafka is a <span class="highlight">distributed</span> <span class="highlight">Event streaming</span> <span class="highlight">platform</span> I’ve used to <span class="highlight">connect and decouple microservices</span>.It helps handle <span class="highlight">traffic spikes smoothly</span> and <span class="highlight">process data in real time</span>. —- I usually <span class="highlight">create topics</span> and <span class="highlight">partition them</span> so multiple consumers can read in parallel.In a consumer group, <span class="highlight">each partition is handled by only one consumer</span> for efficiency.I track <span class="highlight">consumer lag</span> to ensure messages are being processed on time. — By default, Kafka gives <span class="highlight">at-least-once delivery</span> — I’ve used <span class="highlight">idempotent or transactional producers</span> when exactly-once was needed.</p>
+
+        <h3>36.1 What is Event Streaming?</h3>
+
+        <p>Event streaming means continuously capturing, storing, and processing streams of events (small pieces of data) in real time as they happen. — These "events" can be <em>anything that happens</em> in a system — like a new order placed, a payment completed, a sensor reading, or a user clicking a button. — <strong>Event streaming</strong> means data flows continuously like a stream instead of being stored and processed in batches.</p>
+
+        <h4>What it means</h4>
+
+        <p>A <strong>Distributed Event Streaming Platform</strong> is a system designed to:</p>
+
+        <ol>
+
+            <li><strong>Capture events</strong> (data changes, actions, messages) in real-time.</li>
+
+            <li><strong>Store them durably</strong> so they can be read later.</li>
+
+            <li><strong>Process and deliver</strong> them to other systems or services.</li>
+
+        </ol>
+
+        <p><strong>Distributed</strong> means the platform is <span class="highlight">spread across multiple servers/nodes</span>, not running on a single machine.</p>
+
+        <p>This gives:</p>
+
+        <ul>
+
+            <li><strong>Scalability</strong> → handle more events by adding more nodes.</li>
+
+            <li><strong>Fault tolerance</strong> → if one node fails, others take over.</li>
+
+            <li><strong>High availability</strong> → no downtime for producers and consumers.</li>
+
+        </ul>
+
+        <h3>36.2 Why Kafka? (Value)</h3>
+
+        <ul>
+
+            <li><strong>Decouple services</strong> (loose coupling).</li>
+
+            <li><strong>Handle spikes</strong> with buffering; smooth traffic.</li>
+
+            <li><strong>Scalable</strong> via partitions; <strong>durable</strong> via replication.</li>
+
+            <li><strong>Replayable</strong>: reprocess by seeking older offsets.</li>
+
+            <li><strong>Low latency</strong> streaming + exactly-once processing (with the right config).</li>
+
+        </ul>
+
+        <h4>Kafka Real-time example</h4>
+
+        <p>Imagine an <strong>e-commerce site</strong>:</p>
+
+        <ol>
+
+            <li><strong>User places an order</strong> → event is sent to Kafka’s "Orders" topic.</li>
+
+            <li>This event is <strong>stored across multiple partitions/nodes</strong>.</li>
+
+            <li><strong>Inventory Service</strong> consumes the event → reduces stock.</li>
+
+            <li><strong>Payment Service</strong> consumes the event → charges the customer.</li>
+
+            <li><strong>Notification Service</strong> consumes the event → sends confirmation email.</li>
+
+        </ol>
+
+        <p>All these services work independently and in parallel because Kafka is <span class="highlight">distributed</span> and can stream events to all of them simultaneously.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>37. Saga Pattern – Backend World</h2>
+
+        <p class="definition">A Saga Pattern is a design pattern used in <span class="highlight">microservices</span> to manage <span class="highlight">distributed transactions</span> without using a global transaction lock. — Instead of one big transaction, it breaks it into <span class="highlight">multiple local transactions</span> across services, each with a <span class="highlight">compensating action</span> in case of failure.</p>
+
+        <h3>Hinglish:</h3>
+
+        <p>Suppose tumhare paas ek e-commerce system hai, aur ek order place karte time tumhe multiple services call karni hain:</p>
+
+        <ol>
+
+            <li><strong>Payment Service</strong> – Payment deduct karo</li>
+
+            <li><strong>Inventory Service</strong> – Stock reduce karo</li>
+
+            <li><strong>Shipping Service</strong> – Shipment create karo</li>
+
+        </ol>
+
+        <p>Agar <strong>step 2</strong> fail ho jaye, tumhe step 1 ka <strong>reverse</strong> karna hoga (refund payment). Ye sequence + rollback ka plan hi Saga Pattern hai.</p>
+
+        <h3>Flow Types in Backend:</h3>
+
+        <ul>
+
+            <li><strong>Choreography</strong> – Services communicate via events (no central controller).</li>
+
+            <li><strong>Orchestration</strong> – A central "orchestrator" service decides the flow.</li>
+
+        </ul>
+
+        <h3>37.2 Saga Pattern – Frontend (React + Redux-Saga)</h3>
+
+        <p>In our React frontend, Saga Pattern ensures that when a user performs an action involving multiple backend services, each service completes its part independently, and if any step fails, compensating actions roll back the previous steps to keep data consistent.</p>
+
+        <p>In React, <strong>Redux-Saga</strong> is a middleware that handles <span class="highlight">side effects</span> (async tasks like API calls, websocket communication, delays, retries) in a predictable way. It’s called "Saga" because it also organizes async operations in <span class="highlight">steps</span>, and can handle rollback/retry logic just like backend sagas.</p>
+
+        <h3>Why Use Saga (Frontend + Backend)</h3>
+
+        <p><strong>English:</strong></p>
+
+        <ul>
+
+            <li>Keeps async flow predictable.</li>
+
+            <li>Allows retries, delays, rollbacks.</li>
+
+            <li>Decouples business logic from UI.</li>
+
+            <li>Easier to test complex async workflows.</li>
+
+        </ul>
+
+        <h3>Real-Time Full Example (Combined)</h3>
+
+        <h4>Scenario:</h4>
+
+        <p>You are building an <strong>Order Checkout</strong> in React that talks to microservices.</p>
+
+        <p>Steps:</p>
+
+        <ol>
+
+            <li>Frontend calls Payment API (Payment Service).</li>
+
+            <li>If payment succeeds → call Inventory API (Inventory Service).</li>
+
+            <li>If inventory is available → call Shipping API (Shipping Service).</li>
+
+            <li>If any step fails → call compensation APIs (Refund Payment, Restock Inventory).</li>
+
+        </ol>
+
+        <h3>Distributed Transaction?</h3>
+
+        <p>A distributed transaction is when a single business process spans multiple services or databases and we need all-or-nothing behavior. Traditionally, we used XA/2PC, where a coordinator ensures commit or rollback across participants, but it’s slow and doesn’t fit microservices well. In modern systems, we use the Saga pattern, where each service does a local transaction and publishes events. If a later step fails, we trigger compensating actions to undo previous steps. For example, in a travel booking app, if the car rental fails after booking flight and hotel, we send events to cancel both, keeping the system consistent.</p>
+
+        <h3>Approaches to Handle Distributed Transactions</h3>
+
+        <h4>A. XA / Two-Phase Commit (2PC)</h4>
+
+        <ul>
+
+            <li><strong>What:</strong> Traditional approach for distributed transactions in relational databases.</li>
+
+            <li><strong>How:</strong>
+
+                <ol>
+
+                    <li><strong>Prepare phase</strong> → Coordinator asks all participants if they can commit.</li>
+
+                    <li><strong>Commit phase</strong> → If all say "yes", coordinator sends commit; if any says "no", sends rollback.</li>
+
+                </ol>
+
+            </li>
+
+            <li><strong>Pros:</strong> Strong consistency.</li>
+
+            <li><strong>Cons:</strong> Slow, blocking, not very cloud/microservices-friendly.</li>
+
+        </ul>
+
+        <p class="example"><strong>Example:</strong> Booking a flight + hotel in one step, both in different databases. If hotel booking fails, flight booking rolls back.</p>
+
+        <h4>B. Saga Pattern</h4>
+
+        <ul>
+
+            <li><strong>What:</strong> A sequence of local transactions with compensating transactions for rollback.</li>
+
+            <li><strong>How:</strong>
+
+                <ul>
+
+                    <li><strong>Choreography:</strong> Services communicate via events.</li>
+
+                    <li><strong>Orchestration:</strong> A central orchestrator tells each service what to do.</li>
+
+                </ul>
+
+            </li>
+
+            <li><strong>Pros:</strong> Works well in microservices, scalable.</li>
+
+            <li><strong>Cons:</strong> Eventual consistency, more complex to implement.</li>
+
+        </ul>
+
+    </div>
+
+    <div class="section">
+
+        <h2>How do you handle strict deadlines</h2>
+
+        <p>When I have strict deadlines, I start by prioritizing tasks based on urgency and impact. I break the work into smaller deliverables to stay organized and maintain steady progress. If I face any blockers, I communicate them early to ensure the team can support or adjust timelines.I stay focused, avoid unnecessary context switching, and make sure I deliver on time without compromising code quality</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>How do you handle failures in a microservice system?"</h2>
+
+        <p>Even agar tumne production me deep kaam na kiya ho, concept bolna hai.</p>
+
+        <p><strong>Answer:</strong></p>
+
+        <p>"Failures should not break the entire system. We handle failures using proper error handling, retries, timeouts, and fallback responses. Logging and monitoring help us detect issues early.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>"How do you design a REST API?</h2>
+
+        <p><strong>Answer:</strong></p>
+
+        <p>"I follow REST principles. I use proper HTTP methods, meaningful URLs, request validation, standard status codes, and clean response models. I keep APIs simple and predictable."</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>"Tell me a production issue you faced and how you solved it"</h2>
+
+        <p>Ownership test.</p>
+
+        <p><strong>Safe answer:</strong></p>
+
+        <p>"I faced issues like incorrect data or slow API responses. I analyzed logs, identified the root cause, fixed the issue, tested it, and redeployed. I also added logs to avoid similar issues again."</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>"How do you handle changing requirements?"</h2>
+
+        <p>CTO = business reality.</p>
+
+        <p><strong>Answer:</strong></p>
+
+        <p>"First, I understand the impact of the change. Then I identify affected modules. I design a solution with minimal changes and communicate clearly with the team."</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>"What do you do if you don’t know the answer?"</h2>
+
+        <p><strong>Very important</strong></p>
+
+        <p><strong>Best answer:</strong></p>
+
+        <p>"If I don’t know something, I’m honest about it. I try to understand the problem, ask questions, and then learn and implement the solution."</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>BEST CTO-LEVEL ANSWER (Speak this)</h2>
+
+        <p>Fetching 1 lakh records directly is not recommended.I optimize by using pagination, projections, indexing, streaming for large datasets, and caching where applicable.The approach depends on whether the data is for UI, export, or background processing</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Example 1: Slow API</h2>
+
+        <h4>Question: API is slow. What do you do?</h4>
+
+        <p>First, I identify where the delay is: network, database, or application logic. I check logs, DB queries, and API response time. If DB is slow, I optimize queries.(indexing) If logic is heavy, I refactor code. If needed, I apply caching or pagination. If external APIs are slow, I isolate them using async processing or timeouts.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Example 2: Feature Request</h2>
+
+        <h4>Business asks: "Add a new reporting feature.</h4>
+
+        <p>First, I understand how often the report is used, how much data it processes, and who consumes it. If it’s heavy, I design it as an async job instead of a synchronous API.</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Example 3: Complex Logic</h2>
+
+        <p>I first try to solve it with a single service and clear boundaries. I only split services when scaling or ownership requires it</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Example 2: High Traffic API</h2>
+
+        <p>First, I add caching and fix repeated DB calls. Only if traffic still increases, I scale infrastructure</p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Cache</h2>
+
+        <p>In our calendar component, we had read-heavy APIs where the same data was being requested multiple times.</p>
+
+        <p><strong>Fetching the same calendar data repeatedly from the database was increasing response time and database load."</strong></p>
+
+        <p><strong>"So we introduced caching to improve performance and reduce infrastructure cost. We enabled Spring Boot caching using <code>@EnableCaching</code> and applied cache annotations at the service layer.</strong></p>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pageHeading = document.querySelector("h1");
+            const h2Tags = Array.from(document.querySelectorAll("h2"));
+
+            if (!pageHeading || h2Tags.length === 0) {
+                return;
+            }
+
+            const jumpNav = document.createElement("div");
+            jumpNav.className = "jump-nav";
+
+            const jumpTitle = document.createElement("p");
+            jumpTitle.className = "jump-nav-title";
+            jumpTitle.textContent = "Quick Jump to Sections";
+
+            const linksWrap = document.createElement("div");
+            linksWrap.className = "jump-nav-links";
+
+            h2Tags.forEach(function (heading, index) {
+                if (!heading.id) {
+                    const cleanId = heading.textContent
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, "-")
+                        .replace(/^-+|-+$/g, "");
+                    heading.id = cleanId ? cleanId : "section-" + (index + 1);
+                }
+
+                const plainLabel = heading.textContent
+                    .replace(/[^\x20-\x7E]/g, " ")
+                    .replace(/\s+/g, " ")
+                    .trim();
+
+                const compactLabel = plainLabel
+                    .replace(/^"+|"+$/g, "")
+                    .slice(0, 26)
+                    .trim();
+
+                const link = document.createElement("a");
+                link.className = "jump-link";
+                link.href = "#" + heading.id;
+                link.textContent = compactLabel ? (plainLabel.length > 26 ? compactLabel + "…" : compactLabel) : "Section " + (index + 1);
+                link.title = plainLabel || "Section " + (index + 1);
+                linksWrap.appendChild(link);
+            });
+
+            jumpNav.appendChild(jumpTitle);
+            jumpNav.appendChild(linksWrap);
+            pageHeading.insertAdjacentElement("afterend", jumpNav);
+        });
+    </script>
 </body>
+
 </html>
